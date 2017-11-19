@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+</head>
+<body>
+{% if ratings_exist %}
+<a href="/top-recommend/20">20</a>
+{% else %}
+<form method="post" action="/post-ratings" id="jasto-form">
+    <div>
+        <select class="js-data-example-ajax-0" name="user_data[0][movie]">
+            <option selected="selected">Select Movie</option>
+        </select>
+        <input type="text" name="user_data[0][rating]">
+    </div>
+
+    <div>
+        <select class="js-data-example-ajax-1" name="user_data[1][movie]">
+            <option value="3620194" selected="selected">select2/select2</option>
+        </select>
+        <input type="text" name="user_data[1][rating]">
+    </div>
+
+
+    <div>
+        <select class="js-data-example-ajax-2" name="user_data[2][movie]">
+            <option value="3620194" selected="selected">select2/select2</option>
+        </select>
+        <input type="text" name="user_data[2][rating]">
+    </div>
+
+
+    <div>
+        <select class="js-data-example-ajax-3" name="user_data[3][movie]">
+            <option value="3620194" selected="selected">select2/select2</option>
+        </select>
+        <input type="text" name="user_data[3][rating]">
+    </div>
+
+    <div>
+        <select class="js-data-example-ajax-4" name="user_data[4][movie]">
+            <option value="3620194" selected="selected">select2/select2</option>
+        </select>
+        <input type="text" name="user_data[4][rating]">
+    </div>
+
+    <button onclick="submitForm()" type="button">Submit</button>
+</form>
+{% endif %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.8.1/jquery.serializejson.min.js"></script>
+<script>
+    $(".js-data-example-ajax-0").select2({
+        ajax: {
+            url: "/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                };
+            },
+            processResults: function (data, params) {
+                console.log(data);
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
+
+
+    $(".js-data-example-ajax-1").select2({
+        ajax: {
+            url: "/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                };
+            },
+            processResults: function (data, params) {
+                console.log(data);
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
+
+
+    $(".js-data-example-ajax-2").select2({
+        ajax: {
+            url: "/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                };
+            },
+            processResults: function (data, params) {
+                console.log(data);
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
+
+
+    $(".js-data-example-ajax-3").select2({
+        ajax: {
+            url: "/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                };
+            },
+            processResults: function (data, params) {
+                console.log(data);
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
+
+
+    $(".js-data-example-ajax-4").select2({
+        ajax: {
+            url: "/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                };
+            },
+            processResults: function (data, params) {
+                console.log(data);
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
+
+
+
+    function submitForm() {
+        var data = $("#jasto-form").serializeJSON();
+        console.log(data);
+        $.post('/post-ratings', {mero_data: JSON.stringify(data)})
+                .done(function (data) {
+                    window.location = "/";
+                })
+                .fail(function (err) {
+                    alert("Something went wrong");
+                })
+    }
+</script>
+</body>
+</html>
